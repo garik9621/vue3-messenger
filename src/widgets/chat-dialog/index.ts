@@ -1,0 +1,1 @@
+export { default as ChatDialog } from './ui/chat-dialog.vue'
