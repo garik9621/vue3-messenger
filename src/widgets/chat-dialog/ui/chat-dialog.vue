@@ -9,6 +9,10 @@ const todayMessages = ref([]);
 
 <template>
     <div>
+        <div class="chat-companion">
+
+        </div>
+
         <div>
             <!-- previous days messages -->
             <div
