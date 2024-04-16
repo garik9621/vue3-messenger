@@ -1,25 +1,20 @@
 <script setup lang="ts">
-import { ChatEnterForm, ChatMessage } from '@entities/chat';
+import { ChatMessage } from '@entities/chat';
 import { ref } from 'vue';
+import { ChatMessageForm } from '@features/chat-message-form';
 
-const messages = ref([])
-const messagesDate = ref([])
+const messages = ref([]);
+const messagesDate = ref([]);
 const todayMessages = ref([]);
 </script>
 
 <template>
     <div>
-        <div class="chat-companion">
-
-        </div>
+        <div class="chat-companion"></div>
 
         <div>
             <!-- previous days messages -->
-            <div
-                v-for="(date, idx) in messagesDate"
-                :key="idx"
-                class="chat-date-section"
-            >
+            <div v-for="(date, idx) in messagesDate" :key="idx" class="chat-date-section">
                 <chat-message v-for="(item, index) in messages" :key="index" />
             </div>
             <!-- today messages -->
@@ -31,11 +26,9 @@ const todayMessages = ref([]);
         </div>
 
         <div>
-            <chat-enter-form />
+            <chat-message-form />
         </div>
     </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,32 +1,42 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { type Ref, ref } from 'vue';
+import type { IChatMessage, IChatMember } from './types';
 
 export const useChatStore = defineStore('chat', () => {
-    const dialogs = ref([]);
+    const dialogs: Ref<IChatMember[]> = ref([]);
+    const openedDialogId: Ref<string | null> = ref(null);
+    const openedDialogMessages: Ref<IChatMessage[]> = ref([]);
 
-    const getDialogs = async () => {
-        await Promise.resolve();
+    const getDialogs = () => {
+        dialogs.value = [
+            {
+                id: '1',
+                userName: 'Name F',
+                userRating: 1,
+                photo: '',
+                lastMessageDate: '',
+                lastMessageText: 'Lorem ipsum lorem ipsum',
+            },
+        ];
+    };
 
-        dialogs.value = [];
-    }
-
-    const getDialogMessages = async (id) => {
-        await new Promise.resolve();
-    }
+    const getDialogMessages = (id: string) => {
+        openedDialogMessages.value = [];
+    };
 
     const setDialogs = (payload) => {
         dialogs.value = payload;
-    }
+    };
 
     const sendNewMessage = async () => {
         await new Promise.resolve();
-    }
+    };
 
     return {
         dialogs,
         getDialogMessages,
         getDialogs,
         setDialogs,
-        sendNewMessage
-    }
-})
+        sendNewMessage,
+    };
+});
