@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ChatMember, useChatStore } from '@entities/chat';
+import { onMounted } from 'vue';
 
-const { dialogs } = useChatStore();
+const { dialogs, getDialogs } = useChatStore();
 
 const handleOpenDialog = (id: string) => {
     console.log('open dialog ', id);
 };
+
+onMounted(() => {
+    getDialogs();
+});
 </script>
 
 <template>

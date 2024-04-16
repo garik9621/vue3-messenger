@@ -1,13 +1,33 @@
 <script setup lang="ts">
+import type { IChatMessage } from '@entities/chat';
+import { computed, toRefs, unref } from 'vue';
+import { useUser } from '@entities/user/model/useUser';
 
+const props = defineProps<{ message: IChatMessage }>();
+
+const { message } = toRefs(props);
+
+const { userId } = useUser();
+
+const isCurrentUserMessage = computed(() => {
+    return unref(message).userId === unref(userId);
+});
 </script>
 
 <template>
-    <div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aperiam at cumque, cupiditate enim est in laboriosam molestias quidem recusandae, reiciendis soluta totam unde vero, voluptatum! Maxime nostrum rem suscipit.
+    <div class="message" :class="{ 'message--current-user': isCurrentUserMessage }">
+        <p>{{ message.message }}</p>
+        <p>
+            <i>{{ message.sendDate }}</i>
+        </p>
+        <hr />
     </div>
 </template>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.message {
+    &#{&}--current-user {
+        text-align: right;
+    }
+}
 </style>
